@@ -1,40 +1,6 @@
-# date_form_field
-
-<img src="https://raw.githubusercontent.com/liou-jia-hao/flutter-date-time-field/master/demo/screenshot.gif" alt="Demo App" style="margin:auto" height="500">
-
-<a href="https://pub.dev/packages/date_time_field"><img src="https://img.shields.io/pub/v/date_time_field.svg" alt="Pub"></a>
-<a href="https://github.com/hacktons/convex_bottom_bar"><img src="https://img.shields.io/badge/platform-flutter-ff69b4.svg" alt="github"></a>
-<a href="https://github.com/liou-jia-hao/flutter-date-time-field/blob/master/LICENSE"><img src="https://img.shields.io/github/license/liou-jia-hao/flutter-date-time-field.svg" alt="license"></a>
-
-DateTimeField wraps a TextField and integrates it with the enclosing Form. This provides additional functionality, such as validation and integration with other FormField widgets.
-
-
-## Getting Started 
-
-Add this to your package's pubspec.yaml file:
-
-```yml
-dependencies:
-  date_time_field: ^1.0.0
-```
-
-## Usage
-
-import package
-```dart
-import 'package:date_time_field/date_time_field.dart';
-```
-
-## Example
-
-```dart
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:date_time_field/date_time_field.dart';
-
-void main() {
-  runApp(const MyApp());
-}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -127,7 +93,9 @@ class _MyHomePageState extends State<MyHomePage> {
           try {
             loading = true;
             setState(() {});
+            // TODO: update some value
           } catch (error) {
+            debugPrint(error.toString());
           } finally {
             loading = false;
             setState(() {});
@@ -144,4 +112,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-```

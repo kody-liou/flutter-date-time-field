@@ -1,30 +1,56 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:date_time_field/main.dart';
+import '../example/my_app.dart';
+import 'package:date_time_field/date_time_field.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Testing instantiate DateTimePicker',
+      (WidgetTester tester) async {
+    var myWidget = const MyApp();
+    await tester.pumpWidget(myWidget);
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    expect(
+      find.text('2020/01/01'),
+      findsOneWidget,
+      reason: 'DateTimePicker initial display date not found!',
+    );
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    var dateTimePicker = find.byType(DateTimeField);
+    expect(
+      dateTimePicker,
+      findsOneWidget,
+      reason: 'DateTimeField not found!',
+    );
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    await tester.tap(dateTimePicker);
+    await tester.pumpWidget(myWidget);
+
+    var day = find.text('25');
+    expect(
+      day,
+      findsOneWidget,
+      reason: 'DateTimeField day 25 not found!',
+    );
+    var okBtn = find.text('OK');
+    expect(
+      okBtn,
+      findsOneWidget,
+      reason: 'DateTimeField OK button not found!',
+    );
+
+    // await tester.tap(day);
+    // await tester.tap(okBtn);
+
+    // expect(
+    //   find.text('2020/07/25'),
+    //   findsOneWidget,
+    //   reason: 'DateTimeField new date selected not found on text field!',
+    // );
+
+    // await tester.pumpWidget(myWidget);
+    // expect(
+    //   find.text('2020/07/25'),
+    //   findsOneWidget,
+    //   reason: 'DateTimePicker new date value not found!',
+    // );
   });
 }
